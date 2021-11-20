@@ -23,7 +23,7 @@ DOMAIN LAYER DOESN'T DEPEND ON ANY OTHER LAYER. On the other hand, other layers 
 
 Core Folder (in domain) holds all the boilerplate code that can be reused with minor change in different parts of application (in our case, for email and password validation).
 
-Infrastructure : It interacts with APIs, databases and device sensors (if any). We have to design it in such a way that if we want to change the database say from sqlite to no sql database, we won't need tochange anything outside from this layer. It has 3 parts : REPOSITORIES, DATA TRANSFER OBJECTS and DATA SOURCES.
+Infrastructure : It interacts with APIs, databases and device sensors (if any). We have to design it in such a way that if we want to change the database say from sqlite to no sql database, we won't need tochange anything outside from this layer. It has 3 parts : REPOSITORIES, DAT   A TRANSFER OBJECTS and DATA SOURCES.
 Repositories play an important part of being the boundary b/w the boundary and application layer and outside world. Hence, all exception will be handled in the Repositories and the data will be sent accordingly to the domain layer entities. Also, if you don't use Firebase Firestore (which handles caching of data as well) then the caching logic also comesin Respositories.
 The sole purpose of Data Transfer Objects is to convert data b/w entities and value objects from Domain layer and plain data coming from API/Database/source.
 
