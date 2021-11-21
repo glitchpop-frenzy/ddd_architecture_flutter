@@ -42,6 +42,10 @@ abstract class ValueObject<T> {
 
   // Value Equality code ENDS
 
+  // Helper method to know whether the entered value is valid
+  // if it contains the 'right' part then it is valid
+  bool isValid() => value.isRight();
+
   @override
   int get hashCode => value.hashCode;
 
