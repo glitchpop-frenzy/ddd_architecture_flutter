@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:dartz/dartz.dart';
 
+import 'errors.dart';
 import 'failures.dart';
 
 @immutable
@@ -45,6 +46,17 @@ abstract class ValueObject<T> {
   // Helper method to know whether the entered value is valid
   // if it contains the 'right' part then it is valid
   bool isValid() => value.isRight();
+
+  /// Throws [UnexpectedValueFailure] containing the ValueFailure
+  /// basically it will crash the app wherever its called
+  /// if something invalid shows up by showing the error
+  T getOrCrash() {
+    // id also k/n as identity is just returning the same value
+    // that we are passing as parameter
+    // so down below :
+    // id is same as (r) => r (its getting r and returning it.)
+    return value.fold((l) => throw UnexpectedValueError(l), id);
+  }
 
   @override
   int get hashCode => value.hashCode;

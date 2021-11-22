@@ -14,12 +14,11 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
   final IAuthFacade _authFacade;
 
   SignInFormBloc(this._authFacade) : super(SignInFormState.initial());
-  @override
+
   SignInFormState get initialState => SignInFormState.initial();
 
   // the following function will help us in
   // converting the possible events into the resultant states.
-  @override
   Stream<SignInFormState> mapEventToState(SignInFormEvent event) async* {
     yield* event.map(
       emailChanged: (e) async* {
