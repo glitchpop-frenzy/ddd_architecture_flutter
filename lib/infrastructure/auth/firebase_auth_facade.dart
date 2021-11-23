@@ -5,8 +5,11 @@ import 'package:ddd_architecture_flutter/domain/auth/value_objects.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:injectable/injectable.dart';
 import '../../domain/auth/i_auth_facade.dart';
 
+// Different registering process then the one mentioned in YT.
+@LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
   final GoogleSignIn _googleSignIn;
   final FirebaseAuth _firebaseAuth;
