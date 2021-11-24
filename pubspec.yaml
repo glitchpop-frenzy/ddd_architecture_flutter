@@ -44,6 +44,7 @@ dependencies:
   injectable: ^1.5.0
   get_it: ^7.2.0
   injectable_generator: ^1.5.2
+  flushbar: ^1.10.4
 
 dev_dependencies:
   flutter_test:

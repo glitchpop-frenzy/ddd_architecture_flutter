@@ -15,10 +15,10 @@ abstract class SignInFormEvent with _$SignInFormEvent {
   const factory SignInFormEvent.emailChanged(String emailStr) = EmailChanged;
   const factory SignInFormEvent.passwordChanged(String passwordStr) =
       PasswordChanged;
-  const factory SignInFormEvent.signInWithEmailAndPasswordPressed(
-      String emailStr) = SignInWithEmailAndPasswordPressed;
-  const factory SignInFormEvent.registerWithEmailAndPasswordPressed(
-      String emailStr) = RegisterWithEmailAndPasswordPressed;
-  const factory SignInFormEvent.signInWithGooglePressed(String emailStr) =
+  const factory SignInFormEvent.signInWithEmailAndPasswordPressed() =
+      SignInWithEmailAndPasswordPressed;
+  const factory SignInFormEvent.registerWithEmailAndPasswordPressed() =
+      RegisterWithEmailAndPasswordPressed;
+  const factory SignInFormEvent.signInWithGooglePressed() =
       SignInWithGooglePressed;
 }
