@@ -1,18 +1,20 @@
 import 'package:ddd_architecture_flutter/domain/auth/auth_failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ddd_architecture_flutter/domain/auth/i_auth_facade.dart';
+import 'package:ddd_architecture_flutter/domain/auth/user.dart';
 import 'package:ddd_architecture_flutter/domain/auth/value_objects.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as user;
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import '../../domain/auth/i_auth_facade.dart';
+import 'firebase_user_mapper.dart';
 
 // Different registering process then the one mentioned in YT.
 @LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
   final GoogleSignIn _googleSignIn;
-  final FirebaseAuth _firebaseAuth;
+  final user.FirebaseAuth _firebaseAuth;
 
   FirebaseAuthFacade(
     this._firebaseAuth,
@@ -79,7 +81,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       }
       // Google specific authentication
       final googleAuthentication = await googleUser.authentication;
-      final googleAuthCred = GoogleAuthProvider.credential(
+      final googleAuthCred = user.GoogleAuthProvider.credential(
         idToken: googleAuthentication.idToken,
         accessToken: googleAuthentication.accessToken,
       );
@@ -92,5 +94,17 @@ class FirebaseAuthFacade implements IAuthFacade {
     }
     // User not interested in such low level errors of signInWithCredentials
     // hence not presenting much specific error to the user.
+  }
+
+  @override
+  Option<user.User> getSignedInUser() {
+    user.User? currUser = ;
+    String? uid = _firebaseAuth.currentUser!.uid;
+    return optionOf();
+  }
+
+  @override
+  Future<void> signOut() {
+    return Future.wait([_googleSignIn.signOut(), _firebaseAuth.signOut()]);
   }
 }

@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:ddd_architecture_flutter/domain/auth/user.dart';
 import 'auth_failure.dart';
 import 'value_objects.dart';
 
@@ -22,6 +23,9 @@ abstract class IAuthFacade {
 
   // We can't use void since void isn't a class in Dart. It's just a keyword.
   // Therefore we use Unit.
+
+  Future<Option<User>> getSignedInUser();
+  Future<void> signOut();
 
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword(
       {required EmailAddress emailAddress, required Password password});
