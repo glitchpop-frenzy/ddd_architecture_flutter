@@ -301,6 +301,10 @@ class _$AuthStateTearOff {
     return const Initial();
   }
 
+  Processing processing() {
+    return const Processing();
+  }
+
   Authenticated authenticated() {
     return const Authenticated();
   }
@@ -318,6 +322,7 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() processing,
     required TResult Function() authenticated,
     required TResult Function() unauthenticated,
   }) =>
@@ -325,6 +330,7 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? processing,
     TResult Function()? authenticated,
     TResult Function()? unauthenticated,
   }) =>
@@ -332,6 +338,7 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? processing,
     TResult Function()? authenticated,
     TResult Function()? unauthenticated,
     required TResult orElse(),
@@ -340,6 +347,7 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
+    required TResult Function(Processing value) processing,
     required TResult Function(Authenticated value) authenticated,
     required TResult Function(Unauthenticated value) unauthenticated,
   }) =>
@@ -347,6 +355,7 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initial value)? initial,
+    TResult Function(Processing value)? processing,
     TResult Function(Authenticated value)? authenticated,
     TResult Function(Unauthenticated value)? unauthenticated,
   }) =>
@@ -354,6 +363,7 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
+    TResult Function(Processing value)? processing,
     TResult Function(Authenticated value)? authenticated,
     TResult Function(Unauthenticated value)? unauthenticated,
     required TResult orElse(),
@@ -415,6 +425,7 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() processing,
     required TResult Function() authenticated,
     required TResult Function() unauthenticated,
   }) {
@@ -425,6 +436,7 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? processing,
     TResult Function()? authenticated,
     TResult Function()? unauthenticated,
   }) {
@@ -435,6 +447,7 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? processing,
     TResult Function()? authenticated,
     TResult Function()? unauthenticated,
     required TResult orElse(),
@@ -449,6 +462,7 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
+    required TResult Function(Processing value) processing,
     required TResult Function(Authenticated value) authenticated,
     required TResult Function(Unauthenticated value) unauthenticated,
   }) {
@@ -459,6 +473,7 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initial value)? initial,
+    TResult Function(Processing value)? processing,
     TResult Function(Authenticated value)? authenticated,
     TResult Function(Unauthenticated value)? unauthenticated,
   }) {
@@ -469,6 +484,7 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
+    TResult Function(Processing value)? processing,
     TResult Function(Authenticated value)? authenticated,
     TResult Function(Unauthenticated value)? unauthenticated,
     required TResult orElse(),
@@ -482,6 +498,121 @@ class _$Initial implements Initial {
 
 abstract class Initial implements AuthState {
   const factory Initial() = _$Initial;
+}
+
+/// @nodoc
+abstract class $ProcessingCopyWith<$Res> {
+  factory $ProcessingCopyWith(
+          Processing value, $Res Function(Processing) then) =
+      _$ProcessingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$ProcessingCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements $ProcessingCopyWith<$Res> {
+  _$ProcessingCopyWithImpl(Processing _value, $Res Function(Processing) _then)
+      : super(_value, (v) => _then(v as Processing));
+
+  @override
+  Processing get _value => super._value as Processing;
+}
+
+/// @nodoc
+
+class _$Processing implements Processing {
+  const _$Processing();
+
+  @override
+  String toString() {
+    return 'AuthState.processing()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Processing);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() processing,
+    required TResult Function() authenticated,
+    required TResult Function() unauthenticated,
+  }) {
+    return processing();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? processing,
+    TResult Function()? authenticated,
+    TResult Function()? unauthenticated,
+  }) {
+    return processing?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? processing,
+    TResult Function()? authenticated,
+    TResult Function()? unauthenticated,
+    required TResult orElse(),
+  }) {
+    if (processing != null) {
+      return processing();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Processing value) processing,
+    required TResult Function(Authenticated value) authenticated,
+    required TResult Function(Unauthenticated value) unauthenticated,
+  }) {
+    return processing(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Processing value)? processing,
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(Unauthenticated value)? unauthenticated,
+  }) {
+    return processing?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Processing value)? processing,
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(Unauthenticated value)? unauthenticated,
+    required TResult orElse(),
+  }) {
+    if (processing != null) {
+      return processing(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Processing implements AuthState {
+  const factory Processing() = _$Processing;
 }
 
 /// @nodoc
@@ -525,6 +656,7 @@ class _$Authenticated implements Authenticated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() processing,
     required TResult Function() authenticated,
     required TResult Function() unauthenticated,
   }) {
@@ -535,6 +667,7 @@ class _$Authenticated implements Authenticated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? processing,
     TResult Function()? authenticated,
     TResult Function()? unauthenticated,
   }) {
@@ -545,6 +678,7 @@ class _$Authenticated implements Authenticated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? processing,
     TResult Function()? authenticated,
     TResult Function()? unauthenticated,
     required TResult orElse(),
@@ -559,6 +693,7 @@ class _$Authenticated implements Authenticated {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
+    required TResult Function(Processing value) processing,
     required TResult Function(Authenticated value) authenticated,
     required TResult Function(Unauthenticated value) unauthenticated,
   }) {
@@ -569,6 +704,7 @@ class _$Authenticated implements Authenticated {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initial value)? initial,
+    TResult Function(Processing value)? processing,
     TResult Function(Authenticated value)? authenticated,
     TResult Function(Unauthenticated value)? unauthenticated,
   }) {
@@ -579,6 +715,7 @@ class _$Authenticated implements Authenticated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
+    TResult Function(Processing value)? processing,
     TResult Function(Authenticated value)? authenticated,
     TResult Function(Unauthenticated value)? unauthenticated,
     required TResult orElse(),
@@ -635,6 +772,7 @@ class _$Unauthenticated implements Unauthenticated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() processing,
     required TResult Function() authenticated,
     required TResult Function() unauthenticated,
   }) {
@@ -645,6 +783,7 @@ class _$Unauthenticated implements Unauthenticated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? processing,
     TResult Function()? authenticated,
     TResult Function()? unauthenticated,
   }) {
@@ -655,6 +794,7 @@ class _$Unauthenticated implements Unauthenticated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? processing,
     TResult Function()? authenticated,
     TResult Function()? unauthenticated,
     required TResult orElse(),
@@ -669,6 +809,7 @@ class _$Unauthenticated implements Unauthenticated {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
+    required TResult Function(Processing value) processing,
     required TResult Function(Authenticated value) authenticated,
     required TResult Function(Unauthenticated value) unauthenticated,
   }) {
@@ -679,6 +820,7 @@ class _$Unauthenticated implements Unauthenticated {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initial value)? initial,
+    TResult Function(Processing value)? processing,
     TResult Function(Authenticated value)? authenticated,
     TResult Function(Unauthenticated value)? unauthenticated,
   }) {
@@ -689,6 +831,7 @@ class _$Unauthenticated implements Unauthenticated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
+    TResult Function(Processing value)? processing,
     TResult Function(Authenticated value)? authenticated,
     TResult Function(Unauthenticated value)? unauthenticated,
     required TResult orElse(),

@@ -2,8 +2,13 @@
 
 import 'package:auto_route/auto_route.dart';
 import 'package:ddd_architecture_flutter/presentation/sign_in/sign_in_page.dart';
+import 'package:ddd_architecture_flutter/presentation/splash/splash_page.dart';
 
-@MaterialAutoRouter()
+@MaterialAutoRouter(routes: [
+  AutoRoute(page: SplashPage, initial: true),
+  AutoRoute(page: SignInPage),
+])
 class $Router {
-  late SignInPage signInPage;
+  SignInPage? signInPage;
+  SplashPage? splashPage;
 }

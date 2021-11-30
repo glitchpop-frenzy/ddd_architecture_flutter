@@ -1,24 +1,26 @@
 import 'package:ddd_architecture_flutter/application/auth/auth/bloc/auth_bloc.dart';
 import 'package:ddd_architecture_flutter/presentation/injection.dart';
+import 'package:ddd_architecture_flutter/presentation/route/router.gr.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:auto_route/auto_route.dart';
-
-import '../sign_in/sign_in_page.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Router;
 
 class AppWidget extends StatelessWidget {
   const AppWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final _router = Router();
+
     return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) =>
-              getIt<AuthBloc>()..add(const AuthEvent.authCheckRequested()),
-        )
-      ],
-      child: MaterialApp(
+        providers: [
+          BlocProvider(
+            create: (context) =>
+                getIt<AuthBloc>()..add(const AuthEvent.authCheckRequested()),
+          )
+        ],
+        child: MaterialApp.router(
+          routeInformationParser: _router.defaultRouteParser(),
+          routerDelegate: _router.delegate(),
           title: 'Notes',
           debugShowCheckedModeBanner: false,
           theme: ThemeData.light().copyWith(
@@ -32,8 +34,6 @@ class AppWidget extends StatelessWidget {
               ),
             ),
           ),
-          builder: ExtendedNavigator(router: Router())),
-    );
-    ;
+        ));
   }
 }

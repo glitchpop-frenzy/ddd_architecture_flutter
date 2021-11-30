@@ -47,7 +47,6 @@ class UniqueID extends ValueObject<String> {
   }
 
   factory UniqueID.fromUniqueString(String uniqueId) {
-    assert(uniqueId != null);
     return UniqueID._(right(uniqueId));
   }
   const UniqueID._(this.value);
