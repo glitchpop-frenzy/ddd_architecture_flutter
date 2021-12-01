@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:ddd_architecture_flutter/application/auth/auth/bloc/auth_bloc.dart';
+import 'package:ddd_architecture_flutter/presentation/sign_in/sign_in_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../route/router.gr.dart';
@@ -12,24 +13,40 @@ class SplashPage extends StatelessWidget {
     // listener is useful to do things which cannot happen during build
     // ex. navigation
 
-    return BlocListener<AuthBloc, AuthState>(
+    return BlocConsumer<AuthBloc, AuthState>(
       listener: (ctx, state) {
-        state.map(
-          initial: (_) {},
-          processing: (_) => const Center(child: CircularProgressIndicator()),
+        state.maybeMap(
+          orElse: () {},
+          unauthenticated: (_) =>
+              context.router.replace(const SignInPageRoute()),
+        );
+      },
+      builder: (ctx, state) {
+        return state.maybeMap(
+          orElse: () {
+            // ignore: avoid_print
+            print(state);
+            return Container(
+                color: Colors.white,
+                child: const Text('Builder: Some error occured'));
+          },
+          initial: (_) {
+            return const SignInPage();
+          },
+          processing: (_) {
+            // ignore: avoid_print
+            print('kya yeh execute ho rha hai?');
+            return const Center(child: CircularProgressIndicator());
+          },
           authenticated: (_) {
             // ignore:avoid_print
             print('I am authenticated');
-            /*Navigator.of(context).pushReplacementNamed();*/
+            return const Text('The user is Authenticated');
+            // context.router.push(route);
           },
-          unauthenticated: (_) => context.replaceRoute(const SignInPageRoute()),
         );
       },
-      child: const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
-      ),
+      // child: const Scaffold(body: SignInPage()),
     );
   }
 }

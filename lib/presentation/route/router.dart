@@ -8,7 +8,4 @@ import 'package:ddd_architecture_flutter/presentation/splash/splash_page.dart';
   AutoRoute(page: SplashPage, initial: true),
   AutoRoute(page: SignInPage),
 ])
-class $Router {
-  SignInPage? signInPage;
-  SplashPage? splashPage;
-}
+class $Router {}

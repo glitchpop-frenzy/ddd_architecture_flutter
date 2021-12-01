@@ -12,17 +12,26 @@ part 'auth_bloc.freezed.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final IAuthFacade _authFacade;
 
-  AuthBloc(this._authFacade) : super(const AuthState.initial());
+  AuthBloc(this._authFacade) : super(const AuthState.processing()) {
+    on<AuthCheckRequested>((event, emit) async => _authCheckRequested);
+    on<SignedOut>((event, emit) async => _signedOut);
+  }
 
-  Stream<AuthState> mapEventToState(AuthEvent event) async* {
-    yield const AuthState.processing();
-    yield* event.map(authCheckRequested: (e) async* {
-      final userOption = await _authFacade.getSignedInUser();
-      yield userOption.fold(() => const AuthState.unauthenticated(),
-          (_) => const AuthState.authenticated());
-    }, signedOut: (e) async* {
-      await _authFacade.signOut();
-      yield const AuthState.unauthenticated();
-    });
+  Future<void> _authCheckRequested(
+      AuthEvent event, Emitter<AuthState> emit) async {
+    // ignore: avoid_print
+    print('is this even called?');
+    emit(const AuthState.processing());
+    final userOption = await _authFacade.getSignedInUser();
+    // ignore: avoid_print
+    print('Auth Check Requested called');
+    emit(userOption.fold(() => const AuthState.unauthenticated(),
+        (_) => const AuthState.authenticated()));
+  }
+
+  Future<void> _signedOut(AuthEvent event, Emitter<AuthState> emit) async {
+    emit(const AuthState.processing());
+    await _authFacade.signOut();
+    emit(const AuthState.unauthenticated());
   }
 }
